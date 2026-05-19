@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "ThuleSignal.Domain/1.0.0": {
+        "runtime": {
+          "ThuleSignal.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ThuleSignal.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

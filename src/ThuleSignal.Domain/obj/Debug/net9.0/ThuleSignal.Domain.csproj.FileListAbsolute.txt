@@ -1,0 +1,12 @@
+C:\Users\Admin\Desktop\OOP-pratcice\Thule-signal\src\ThuleSignal.Domain\bin\Debug\net9.0\ThuleSignal.Domain.deps.json
+C:\Users\Admin\Desktop\OOP-pratcice\Thule-signal\src\ThuleSignal.Domain\bin\Debug\net9.0\ThuleSignal.Domain.dll
+C:\Users\Admin\Desktop\OOP-pratcice\Thule-signal\src\ThuleSignal.Domain\bin\Debug\net9.0\ThuleSignal.Domain.pdb
+C:\Users\Admin\Desktop\OOP-pratcice\Thule-signal\src\ThuleSignal.Domain\obj\Debug\net9.0\ThuleSignal.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Desktop\OOP-pratcice\Thule-signal\src\ThuleSignal.Domain\obj\Debug\net9.0\ThuleSignal.Domain.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\OOP-pratcice\Thule-signal\src\ThuleSignal.Domain\obj\Debug\net9.0\ThuleSignal.Domain.AssemblyInfo.cs
+C:\Users\Admin\Desktop\OOP-pratcice\Thule-signal\src\ThuleSignal.Domain\obj\Debug\net9.0\ThuleSignal.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\OOP-pratcice\Thule-signal\src\ThuleSignal.Domain\obj\Debug\net9.0\ThuleSignal.Domain.sourcelink.json
+C:\Users\Admin\Desktop\OOP-pratcice\Thule-signal\src\ThuleSignal.Domain\obj\Debug\net9.0\ThuleSignal.Domain.dll
+C:\Users\Admin\Desktop\OOP-pratcice\Thule-signal\src\ThuleSignal.Domain\obj\Debug\net9.0\refint\ThuleSignal.Domain.dll
+C:\Users\Admin\Desktop\OOP-pratcice\Thule-signal\src\ThuleSignal.Domain\obj\Debug\net9.0\ThuleSignal.Domain.pdb
+C:\Users\Admin\Desktop\OOP-pratcice\Thule-signal\src\ThuleSignal.Domain\obj\Debug\net9.0\ref\ThuleSignal.Domain.dll
