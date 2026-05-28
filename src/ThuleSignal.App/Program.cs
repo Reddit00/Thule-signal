@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using ThuleSignal.App.Dto;
 using ThuleSignal.App.Services.Infrastructure;
 using ThuleSignal.Domain.Entities;
 
@@ -10,32 +12,38 @@ namespace ThuleSignal.App
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-            Console.WriteLine("СТРУКТУРНІ ПАТЕРНИ ТА МАСШТАБУВАННЯ \n");
+            Console.WriteLine("ЗБЕРЕЖЕННЯ СТАНУ ПРОГРАМИ ЧЕРЕЗ JSON & DTO \n");
 
-            Console.WriteLine("[1] Створення деревоподібної медіатеки ");
+            string stateFilePath = "thule_player_state.json";
+
+            Console.WriteLine("[Сесія 1: Робота та Серіалізація] ");
             
-            var rootLibrary = new MediaGroup("Головна Медіатека");
+            var originalPlaylist = new Playlist("Вечірній Стрім Thule");
+            originalPlaylist += new PodcastTrack("id-101", "SOLID Architecture Overview", 300, "solid.mp3", "art-1", "Uncle Bob");
+            originalPlaylist += new StreamingTrack("id-102", "Kyiv Electro Beats", "https://stream.ua/electro", 320);
+
+            PlaylistDto playlistDto = MappingService.ToDto(originalPlaylist);
+
+            var persistenceService = new JsonPersistenceService();
+            persistenceService.SavePlaylist(playlistDto, stateFilePath);
+
+            Console.WriteLine("\n[Зміст згенерованого файлу JSON]:");
+            Console.WriteLine(File.ReadAllText(stateFilePath));
+
+            Console.WriteLine("\n[Сесія 2: Очищення пам'яті та Десеріалізація]");
             
-            var podcastFolder = new MediaGroup("Подкасти про С#");
-            podcastFolder.Add(new PodcastTrack("p1", "Патерн Декоратор", 120, "dec.mp3", "art-1", "Uncle Bob"));
-            podcastFolder.Add(new PodcastTrack("p2", "Патерн Композит", 150, "comp.mp3", "art-1", "Uncle Bob"));
+            PlaylistDto loadedDto = persistenceService.LoadPlaylist(stateFilePath);
 
-            var ambientAlbum = new MediaGroup("Альбом: Thule Echoes");
-            var singleTrack = new PodcastTrack("t1", "Intro Signal", 60, "intro.mp3", "art-2", "Thule Dj");
-            ambientAlbum.Add(singleTrack);
+            Playlist restoredPlaylist = MappingService.ToDomain(loadedDto);
 
-            rootLibrary.Add(podcastFolder);
-            rootLibrary.Add(ambientAlbum);
+            Console.WriteLine($"\n[Успіх відновлення]: Плейлист '{restoredPlaylist.Name}' знову в ОЗУ.");
+            Console.WriteLine($"Кількість відновлених треків: {restoredPlaylist.Tracks.Count} шт.");
+            foreach (var track in restoredPlaylist.Tracks)
+            {
+                Console.WriteLine($" -> Трек: '{track.Title}' | Тип: {track.GetType().Name} | {track.GetPlaybackSource()}");
+            }
 
-            rootLibrary.DisplayStructure(0);
-            Console.WriteLine($"\n[Composite Result] Загальний час усього дерева медіатеки: {rootLibrary.GetTotalDuration()} сек.\n");
-
-            Console.WriteLine("[2] Запуск системи через Фасад та Декоратор ");
-            
-            var thuleFacade = new ThulePlayerFacade();
-            thuleFacade.InitializeSystem("Центральна Консоль UI");
-
-            thuleFacade.PlayEncryptedTrack(singleTrack);
+            if (File.Exists(stateFilePath)) File.Delete(stateFilePath);
         }
     }
 }
