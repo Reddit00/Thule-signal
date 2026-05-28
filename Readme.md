@@ -1,1 +1,34 @@
-https://mermaid.live/edit#pako:eNrFWH1PI0UY_yqTNadbpbUFCrS5kBBAbXJBpNwfmibNdHdaxtvu9PaF0EMIJ57GxIgxF_xHjX4DBM5DefsKu9_IZ2Z2l3Z2W47zrckts_u8_Z6XmXme29YMZhKtqhkWdt0lijsO7jZsBL9791DwS3AVvAyu4XkaHgbniC_hEe4FV-HT8HN47gVH4TMUXAZHwHiM4HGEglMQ4EIX8O8EmL5FwUm4F-4H10hfxcYj3CFuTlqRTxt3idvDBkELvknZqoX7xGkusS6mdnPZ9qhHiYu2JTP_Cbho3QFlg5_5752651C7g2pm9vd16llEIVHbQ0u-gz3K7JpdJwazTTdb_D1qkVXsbQxT8y3GLNQ0qdtjLlEtC5y6KxVQcwJFS49DmUDcuhlZT2g9sJHL1CO9Zt4GcVSGJWlfV76_EX8XKCVIsDHAtdOw1eAuWC2_Oyq4o4K4RiyCXfIxwY5CfUBdb1dA35V5U-Mr7OnpyPRB1y1IHQ-Uj4K6ArWVhUXY25VuprAIjTEYXp3jEfCCtV4Dw7h4xDpHoJA4TXOwJjz-VHkWHYI9UvMIFBhz9ByqxZrjb0OuDXmYvS8Xer0mbAGQtt1mrCS9O1N21Ojcvw_5JU4b9M_PK6g_wO4K2fIALq9ZhRhRhNMKaY24hNM2GTVTfmVgW-h0HNKBAN0F3GuENF0ro6KSH6yMppdRGnm-LZp8D_MTY0TZJOgG1Ultub-VcChpcL7TH5HwFljIYrktpu8TmwMmH_nEJxmg5WFg-I5DbK9mm2QrhwRvxDYm4nXy2Achiq1RwP5V6xt-u22R_8P0GulBof53lu9SRh-2XOJsklHnBnGyGG4rooc9E_yJT0zXg5fkQo38ENDF9fVqhwRx6n7rU2J4d8GxRjoQzRsfdNUnphqPxLpsk9xRaIV5tN2Pmdzbz75FZrvMIg_pqAj_I2F8hVqog3VqZDV2kmnZ7lCbZJ-PSmzgpGRxBBT29KnUdKNVFufQ0dykqfNccEaxaEbBqPMIKSzyRm4OhkvtDUiyNfU0yBhjZs4fMGwm_UHSfPSiRaYI59KzKdjnLWNmbcFFKxuM27Isp4UXMAacw6QAU0D4ZXgYHiB4uYRB4QW0_18A-Q8YGw5hToBPR2JqCJ8KgVMYDo5B-BK4D5C-RrBFn4iGGL2Jaja0utTDthE3QDK4hcJn86gme1vcsgiqDmEI98PnqLCyvI4s2iZG34g71iRgUkGqFRjmSophmHv4ppfPjIvmRmgwuxG7cjOM41WO8nGs8pne5TcyN_vmxtVkuw2yRUffYJK_g4xd8eRGKf4hyiVMf2-FB_Dnz-AMBRdA_x1BsveBeimnRaBeAE1fcF1mUJFcF7K7BJ7B3WIbNBkKo4a-oZUaGsrn52H1NqzkRAJJ_h7mynM5lEKK9UXWjZuhd-MkwjpWJqRUXbKCQNePoIOPsmcA8BulPkYK_QpenkOdnUIQnnNBUHEAMRhMQKp-uJ5Ew8_Bb-Ez7oI0jMKv-B6B4n2JZHebkRmuIH1QiHicASA-jJ_JsTw4FsWvx0xjtQ2BBG0_gWPHkL8TrmPAuezJXo9Fs2yoAVRvNBHKa4H3MPyaBxPpMTGnTWgdh5pa1XN8MqF1idPF_FUTF0JDgwEYpiqtCksTO48aWsPeAZketj9hrBuLOczvbGjVNrZcePPFzRb9P0fCwuvPWWS-7WnVstCgVbe1La2aL00XpitTc5OVyszcTKlYrExofa06WSwXZifLU-WpyeL05NTczoT2RJgsFYqlmeJcZbYyWyxVKuW58s5fZMXwaA 
+# Thule-Signal Core: Advanced Media Player Engine
+
+Проєкт розроблено в межах курсу практичних занять та самостійних робіт з архітектури програмного забезпечення та контрактного об'єктно-орієнтованого проєктування на C#.
+
+Система являє собою масштабований, слабозв'язаний двіжок аудіоплеєра промислового рівня, побудований за принципами **Clean Architecture** та **SOLID**.
+
+---
+
+## Архітектура та Структура Проєкту
+
+Проєкт розділено на три ізольовані шари згідно з правилами Dependency Inversion:
+
+* **`ThuleSignal.Domain`**: Сутності предметної області (`Track`, `Playlist`, `Artist`), бізнес-інваріанти, Custom Exceptions та базові інтерфейси-маркери. Не має жодних зовнішніх залежностей.
+* **`ThuleSignal.App`**: Сервіси бізнес-логіки (`PlayerEngine`), впровадження патернів, DTO (Data Transfer Objects), сервіси мапінгу та серіалізації в JSON.
+* **`ThuleSignal.Tests`**: Шар автоматизованого Unit-тестування критичних вузлів на базі фреймворку xUnit та ізоляції Moq.
+
+---
+
+##  Застосовані Патерни Проєктування (GoF & SOLID)
+
+У процесі еволюції системи було успішно інтегровано такі патерни:
+
+1.  **Поведінкові:**
+    * `Strategy`: Динамічна зміна алгоритмів черги відтворення (`SequentialStrategy`, `ShuffleStrategy`).
+    * `Observer`: Івент-орієнтована розв'язка логіки відтворення від інтерфейсу відображення на базі подій `event` та `EventHandler<T>` із захистом від витоків пам'яті.
+    * `Iterator`: Кастомний безпечний обхід треків всередині агрегату плейлиста.
+2.  **Породжувальні:**
+    * `Factory Method`: Динамічна фабрика `TrackFactory` для створення підтипів треків на основі конфігурацій (JSON/CLI) без жорсткої прив'язки до реалізацій.
+    * `Singleton`: Потокобезпечний менеджер конфігурацій `ThuleConfiguration` з лінивою ініціалізацією.
+3.  **Структурні:**
+    * `Composite`: Ієрархічне об'єднання треків та папок/альбомів у спільне дерево `MediaComponent` для рекурсивного керування групою сутностей.
+    * `Decorator`: Динамічне розширення функціоналу безпеки треків (`EncryptedTrackDecorator`) без модифікації їхнього коду.
+    * `Facade`: Спрощений уніфікований вхід `ThulePlayerFacade` до складної інфраструктури додатку.
+![alt text](image.png)
