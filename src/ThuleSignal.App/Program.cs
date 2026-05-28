@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using ThuleSignal.App.Services;
 using ThuleSignal.App.Services.Infrastructure;
+using ThuleSignal.App.Patterns.Observer;
+using ThuleSignal.App.Services.Contracts;
 using ThuleSignal.Domain.Entities;
-using ThuleSignal.Domain.Exceptions;
 
 namespace ThuleSignal.App
 {
@@ -10,31 +13,29 @@ namespace ThuleSignal.App
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.WriteLine("ЗАПУСК РЕФАКТОРИНГУ SOLID ");
 
-            Console.WriteLine("ЕСТ СИСТЕМИ ВИНИТКІВ ТА RETRY POLICY ");
-
-            var streamTrack = new StreamingTrack("t-live", "Thule Ambient Radio", "https://icecast.thule.com/live.mp3", 320);
-            var bluetoothOutput = new BluetoothAudioOutput();
+            IAudioOutput bluetoothOutput = new BluetoothAudioOutput();
             
-            var retryService = new RetryPolicyService();
+            var playerEngine = new PlayerEngine(bluetoothOutput);
 
-            try
-            {
-               retryService.ExecuteWithRetry(() =>
-                {
-                    bluetoothOutput.PlayStream(streamTrack);
-                }, maxRetries: 4, initialDelayMs: 400);
-            }
-            catch (ThuleSignalException ex)
-            {
-                Console.WriteLine($"\n[Критичний UI Лог]: Додаток зловив системний збій: {ex.Message}");
-            }
-            finally
-            {
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("\n[Finally] Стенд завершив роботу. Пам'ять стабільна, витоків ресурсів немає.");
-                Console.ResetColor();
-            }
+            var uiObserver = new ConsoleUiObserver();
+            playerEngine.RegisterObserver(uiObserver);
+
+            var track1 = new PodcastTrack("id-1", "SRP & OCP Lecture", 120, "lecture1.mp3", "art-1", "Uncle Bob");
+            var track2 = new PodcastTrack("id-2", "LSP & ISP Workshop", 150, "lecture2.mp3", "art-1", "Uncle Bob");
+            var playlist = new Playlist("SOLID Architecture");
+            playlist += track1;
+            playlist += track2;
+
+            IQueueNavigable navigator = playerEngine;
+            navigator.LoadPlaylist(playlist);
+
+            var remoteControl = new RemoteControlClient(playerEngine);
+
+            remoteControl.PressPlayButton();
+            Console.WriteLine();
+            remoteControl.PressPauseButton();
         }
     }
 }
