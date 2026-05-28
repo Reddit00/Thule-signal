@@ -7,8 +7,8 @@ namespace ThuleSignal.Domain.Entities
         public string StreamUrl => FilePath;
         public int MaxBitrateKbps { get; set; }
 
-        public StreamingTrack(string id, string title, string streamUrl, int maxBitrateKbps) 
-            : base(id, title, 1, streamUrl) 
+        public StreamingTrack(string id, string title, string streamUrl, int maxBitrateKbps, string artistId = "system-stream") 
+            : base(id, title, 1, streamUrl, Genre.Ambient, artistId) // Передаємо Genre.Ambient та artistId батькові
         {
             MaxBitrateKbps = maxBitrateKbps;
         }

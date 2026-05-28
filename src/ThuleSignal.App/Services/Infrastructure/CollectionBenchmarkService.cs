@@ -17,7 +17,7 @@ namespace ThuleSignal.App.Services.Infrastructure
             var testTracks = new List<Track>();
             for (int i = 0; i < elementCount; i++)
             {
-                testTracks.Add(new PodcastTrack($"id-{i}", $"Track Number {i}", 180, $"file-{i}.mp3", "Author"));
+            testTracks.Add(new PodcastTrack($"id-{i}", $"Track Number {i}", 180, $"file-{i}.mp3", "art-bench", "Author"));
             }
 
             string targetId = $"id-{elementCount - 5}";
