@@ -8,9 +8,11 @@ namespace ThuleSignal.App.Services
     public class PlayerEngine : IPlaybackControllable
     {
         public event EventHandler<PlayerStateEventArgs>? PlayerStateChanged;
+
         private string _currentState = "Stopped";
         private readonly IAudioOutput _audioOutput;
         private Track? _currentTrack;
+
         public PlayerEngine(IAudioOutput audioOutput)
         {
             _audioOutput = audioOutput ?? throw new ArgumentNullException(nameof(audioOutput));
@@ -18,14 +20,21 @@ namespace ThuleSignal.App.Services
 
         public void PlayTrack(Track track)
         {
-            _currentTrack = track;
+            _currentTrack = track ?? throw new ArgumentNullException(nameof(track));
             _currentState = "Playing";
+            
             _audioOutput.PlayStream(_currentTrack);
             
             OnPlayerStateChanged(new PlayerStateEventArgs(_currentState, _currentTrack.Title));
         }
 
-        public void Play() => Console.WriteLine("[Player] Продовження відтворення.");
+        public void Play()
+        {
+            _currentState = "Playing";
+            Console.WriteLine("[Player Engine] Відтворення продовжено.");
+            OnPlayerStateChanged(new PlayerStateEventArgs(_currentState, _currentTrack?.Title ?? "Немає треку"));
+        }
+
         public void Pause()
         {
             _currentState = "Paused";
