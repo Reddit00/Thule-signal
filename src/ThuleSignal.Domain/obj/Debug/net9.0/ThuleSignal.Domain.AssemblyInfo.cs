@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ThuleSignal.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+471edc8fa4f99de2df1ddaa5eafaaf63ec608a01")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+97e3939c0b604c21598609c35ba37a730865e0b6")]
 [assembly: System.Reflection.AssemblyProductAttribute("ThuleSignal.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ThuleSignal.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
