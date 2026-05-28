@@ -1,19 +1,40 @@
 using System;
 using ThuleSignal.App.Services.Contracts;
 using ThuleSignal.Domain.Entities;
+using ThuleSignal.Domain.Exceptions;
 
 namespace ThuleSignal.App.Services.Infrastructure
 {
     public class BluetoothAudioOutput : IAudioOutput
     {
-        public void InitializeDevice() => Console.WriteLine("[Bluetooth] Пошук пристрою... Навушники 'Thule-Pods' підключено по кодеку aptX HD.");
+        private static int _simulatedNetworkCrashCount = 0;
+
+        public void InitializeDevice() => Console.WriteLine("[Bluetooth] Навушники підключено.");
+        public void StopStream() => Console.WriteLine("[Bluetooth] Потік зупинено.");
+        public void SetVolume(int volume) { }
 
         public void PlayStream(Track track)
         {
-            Console.WriteLine($"[Bluetooth] СТРИМІНГ ПО ПОВІТРЮ: Передача стиснутих аудіо-пакетів -> {track.Title}");
-        }
+            using (track)
+            {
+                Console.WriteLine($"[Audio Engine] Спроба відкрити потік для: {track.Title}");
 
-        public void StopStream() => Console.WriteLine("[Bluetooth] Радіопотік розірвано. Сплячий режим.");
-        public void SetVolume(int volume) => Console.WriteLine($"[Bluetooth] Цифровий сигнал послаблено до: {volume}%");
+                if (track is StreamingTrack stream)
+                {
+                    _simulatedNetworkCrashCount++;
+                    if (_simulatedNetworkCrashCount <= 2) 
+                    {
+                        throw new NetworkStreamingException(
+                            "Помилка буферизації: Мережа нестабільна (Код 503)", 
+                            stream.StreamUrl
+                        );
+                    }
+                }
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"[Bluetooth] УСПІШНО ГРАЄ: -> {track.Title}");
+                Console.ResetColor();
+            } 
+        }
     }
 }
