@@ -1,8 +1,8 @@
 ﻿using System;
-using ThuleSignal.App.Services;
+using System.Collections.Generic;
+using ThuleSignal.App.Common;
+using ThuleSignal.App.Services.Contracts;
 using ThuleSignal.App.Services.Infrastructure;
-using ThuleSignal.App.Patterns.Strategy;
-using ThuleSignal.App.Patterns.Observer;
 using ThuleSignal.Domain.Entities;
 
 namespace ThuleSignal.App
@@ -13,31 +13,34 @@ namespace ThuleSignal.App
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-            Console.WriteLine("ІНІЦІАЛІЗАЦІЯ СИСТЕМИ THULE-SIGNAL");
-           
-            var track1 = new PodcastTrack("id-1", "Clean Architecture Concept", 180, "C:/music/alpha.mp3", "Uncle Bob");
-            var track2 = new StreamingTrack("id-2", "Thule Echo Radio", "https://stream.thule.com/live", 320);
-            var track3 = new PodcastTrack("id-3", "Nordic Frost Podcast", 150, "C:/music/frost.mp3", "Thule Team");
+            Console.WriteLine("ТЕСТ УЗАГАЛЬНЕНЬ ТА ДЕЛЕГАТІВ У СХОВИЩІ ТРЕКІВ\n");
 
-            var playlist = new Playlist("Ембієнт Thule-Signal");
-            playlist += track1;
-            playlist += track2;
-            playlist += track3;
+            IRepository<Track> trackRepository = new InMemoryRepository<Track>();
 
-            var audioOutput = new HardwareAudioOutput();
-            var player = new PlayerEngine(audioOutput);
+            var track1 = new PodcastTrack("t1", "Clean Code Introduction", 200, "cc1.mp3", "Robert Martin");
+            var track2 = new StreamingTrack("t2", "Thule Dark Ambient Stream", "https://stream.io/dark", 320);
+            var track3 = new PodcastTrack("t3", "SOLID Principles", 450, "cc2.mp3", "Robert Martin");
+
+            trackRepository.Add(track1);
+            trackRepository.Add(track2);
+            trackRepository.Add(track3);
+
+            IEnumerable<Track> allTracks = trackRepository.GetAll();
+
+            Console.WriteLine("\n--- Виклик ForEach (Джерела відтворення) ---");
+            GenericDataProcessor.ForEach(allTracks, t => Console.WriteLine($">> {t.Title}: {t.GetPlaybackSource()}"));
+
             
-            var ui = new ConsoleUiObserver();
-            player.RegisterObserver(ui);
+            Console.WriteLine("\n--- Виклик Map (Трансформація в імена) ---");
+            IEnumerable<string> trackTitles = GenericDataProcessor.Map(allTracks, t => t.Title.ToUpper());
+            foreach (var title in trackTitles)
+            {
+                Console.WriteLine($"[Mapped Title]: {title}");
+            }
 
-            player.LoadPlaylist(playlist);
-
-            player.Play();        
-            player.NextTrack();   
-            player.Pause();       
-
-            player.SetStrategy(new ShuffleStrategy());
-            player.NextTrack();   
+            Console.WriteLine("\n--- Виклик Reduce (Агрегація даних) ---");
+            int totalDuration = GenericDataProcessor.Reduce(allTracks, 0, (sum, track) => sum + track.DurationInSeconds);
+            Console.WriteLine($"[Reduced Result] Загальний час усього сховища: {totalDuration} секунд.");
         }
     }
 }

@@ -1,8 +1,9 @@
 using System;
+using ThuleSignal.Domain.Common;
 
 namespace ThuleSignal.Domain.Entities
 {
-    public abstract class Track : IDisposable
+    public abstract class Track : IEntity, IDisposable
     {
         private bool _disposed = false;
         public string Id { get; }

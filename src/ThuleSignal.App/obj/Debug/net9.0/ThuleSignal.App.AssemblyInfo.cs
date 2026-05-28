@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ThuleSignal.App")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+055fb5841ca4eb0b4ccbb9041622cb56b985ee98")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+baeee34d29ac0ce42393c8ea88bab3c280546f5a")]
 [assembly: System.Reflection.AssemblyProductAttribute("ThuleSignal.App")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ThuleSignal.App")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
