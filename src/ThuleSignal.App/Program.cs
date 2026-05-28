@@ -14,8 +14,7 @@ namespace ThuleSignal.App
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             Console.WriteLine("ІНІЦІАЛІЗАЦІЯ СИСТЕМИ THULE-SIGNAL");
-
-            // ВИПРАВЛЕНО: Створюємо конкретні класи замість абстрактного Track
+           
             var track1 = new PodcastTrack("id-1", "Clean Architecture Concept", 180, "C:/music/alpha.mp3", "Uncle Bob");
             var track2 = new StreamingTrack("id-2", "Thule Echo Radio", "https://stream.thule.com/live", 320);
             var track3 = new PodcastTrack("id-3", "Nordic Frost Podcast", 150, "C:/music/frost.mp3", "Thule Team");
