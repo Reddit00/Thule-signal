@@ -22,7 +22,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net9.0"
+          "net9.0-windows"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -30,8 +30,8 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net9.0": {
-            "targetAlias": "net9.0",
+          "net9.0-windows7.0": {
+            "targetAlias": "net9.0-windows",
             "projectReferences": {
               "C:\\Users\\Admin\\Desktop\\OOP-pratcice\\Thule-signal\\src\\ThuleSignal.Domain\\ThuleSignal.Domain.csproj": {
                 "projectPath": "C:\\Users\\Admin\\Desktop\\OOP-pratcice\\Thule-signal\\src\\ThuleSignal.Domain\\ThuleSignal.Domain.csproj"
@@ -52,12 +52,20 @@
         "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
+        "net9.0-windows7.0": {
+          "targetAlias": "net9.0-windows",
           "dependencies": {
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "NAudio": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            },
+            "NetCoreAudio": {
+              "target": "Package",
+              "version": "[2.0.1, )"
             },
             "Terminal.Gui": {
               "target": "Package",
@@ -78,6 +86,9 @@
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WindowsForms": {
+              "privateAssets": "none"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
@@ -168,7 +179,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net9.0"
+          "net9.0-windows"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -176,8 +187,8 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net9.0": {
-            "targetAlias": "net9.0",
+          "net9.0-windows7.0": {
+            "targetAlias": "net9.0-windows",
             "projectReferences": {
               "C:\\Users\\Admin\\Desktop\\OOP-pratcice\\Thule-signal\\src\\ThuleSignal.App\\ThuleSignal.App.csproj": {
                 "projectPath": "C:\\Users\\Admin\\Desktop\\OOP-pratcice\\Thule-signal\\src\\ThuleSignal.App\\ThuleSignal.App.csproj"
@@ -201,8 +212,8 @@
         "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
+        "net9.0-windows7.0": {
+          "targetAlias": "net9.0-windows",
           "dependencies": {
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
